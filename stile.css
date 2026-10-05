@@ -294,3 +294,4 @@ select.chip.menu-anni { width: auto; padding: 5px 10px; font-size: .85rem; color
 .qr svg { width: 210px; height: 210px; }
 .passi li { margin: 6px 0; line-height: 1.5; }
 .errore-testo { color: var(--critico); font-weight: 600; }
+.griglia-2 + .card, .griglia-2 + .griglia-2 { margin-top: 14px; }
