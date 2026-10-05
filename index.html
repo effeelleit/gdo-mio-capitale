@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="it" data-colore="A" data-tema-scelta="automatico" data-tema="chiaro" data-testo="normale">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#14325c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Mio Capitale">
+<meta name="robots" content="noindex">
+<title>GDO &amp; Mio Capitale</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icone/icona-192.png">
+<link rel="apple-touch-icon" href="icone/apple-touch-icon.png">
+<script>
+  // Tema e colore scelti su questo telefono (o, la prima volta, quelli del Mac) prima di disegnare la pagina.
+  (function () {
+    var html = document.documentElement, pref = {};
+    try { pref = JSON.parse(localStorage.getItem('gdo:pref') || '{}'); } catch (e) {}
+    if (pref.colore) html.setAttribute('data-colore', pref.colore);
+    if (pref.tema) html.setAttribute('data-tema-scelta', pref.tema);
+    var media = window.matchMedia('(prefers-color-scheme: dark)');
+    window.__applicaTema = function () {
+      var s = html.getAttribute('data-tema-scelta');
+      html.setAttribute('data-tema', s === 'automatico' ? (media.matches ? 'scuro' : 'chiaro') : s);
+    };
+    window.__applicaTema();
+    media.addEventListener('change', window.__applicaTema);
+  })();
+</script>
+<link rel="stylesheet" href="stile.css">
+<link rel="stylesheet" href="telefono.css">
+</head>
+<body>
+<header class="tel-testata">
+  <div class="tel-titolo"><img src="icone/icona-192.png" alt=""><div><b>GDO &amp; Mio Capitale</b><div class="tel-aggiornato" id="aggiornato"></div></div></div>
+  <button type="button" class="icona-btn" id="blocca" title="Blocca adesso" aria-label="Blocca adesso" hidden>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 018 0v3"/></svg>
+  </button>
+</header>
+
+<main id="contenuto" aria-live="polite"></main>
+
+<nav class="tel-nav" id="nav" hidden>
+  <a href="#anno" data-tab="anno"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-8M22 20H2"/></svg>Anno</a>
+  <a href="#capitale" data-tab="capitale"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M14.5 9a3 3 0 100 6M8 11h5M8 13h5"/></svg>Capitale</a>
+  <a href="#salute" data-tab="salute"><svg viewBox="0 0 24 24"><path d="M3 12h4l2-5 4 10 2-5h6"/></svg>Salute</a>
+  <a href="#negozi" data-tab="negozi"><svg viewBox="0 0 24 24"><path d="M4 9l1-5h14l1 5M4 9h16v11H4zM9 20v-6h6v6"/></svg>Negozi</a>
+  <a href="#simula" data-tab="simula"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>Simula</a>
+  <a href="#altro" data-tab="altro"><svg viewBox="0 0 24 24"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg>Altro</a>
+</nav>
+
+<template id="t-benvenuto">
+  <div class="tel-accesso">
+    <img src="icone/icona-192.png" alt="" width="72" height="72">
+    <h1>Benvenuto</h1>
+    <p class="sotto">Per vedere i tuoi dati carica il file esportato dal Mac (Impostazioni → Telefono) e scrivi la password che hai scelto.</p>
+    <div class="card">
+      <label for="file">File dei dati (.gdotel)</label>
+      <input id="file" type="file">
+      <label for="pw" style="margin-top:12px">Password</label>
+      <input id="pw" type="password" autocomplete="current-password">
+      <div class="azioni"><button type="button" id="apri" style="width:100%;justify-content:center">Apri i dati</button></div>
+      <div id="errore" class="errore-testo piccolo" role="alert"></div>
+    </div>
+    <p class="nota">Il file è cifrato: senza la password nessuno può leggerlo. I dati restano solo su questo telefono, cifrati.</p>
+  </div>
+</template>
+
+<template id="t-sblocco">
+  <div class="tel-accesso">
+    <img src="icone/icona-192.png" alt="" width="72" height="72">
+    <h1>Bentornato</h1>
+    <p class="sotto" id="sblocco-info"></p>
+    <div class="card">
+      <label for="pw">Password</label>
+      <input id="pw" type="password" autocomplete="current-password" autofocus>
+      <div class="azioni"><button type="button" id="sblocca" style="width:100%;justify-content:center">Sblocca</button></div>
+      <div id="errore" class="errore-testo piccolo" role="alert"></div>
+    </div>
+    <p class="nota">Hai dimenticato la password? Esporta di nuovo dal Mac con una password nuova e usa "Cancella i dati da questo telefono" qui sotto.</p>
+    <p><button type="button" class="secondario piccolo" id="cancella">Cancella i dati da questo telefono</button></p>
+  </div>
+</template>
+
+<script src="cifratura.js"></script>
+<script src="motore_simulazioni.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+/* GDO & Mio Capitale - adattamenti per il telefono (si aggiunge a stile.css, lo stesso del Mac). */
+html { font-size: 15px; -webkit-text-size-adjust: 100%; }
+body { padding-bottom: calc(68px + env(safe-area-inset-bottom)); overscroll-behavior-y: none; }
+main { padding: 14px 14px 20px; max-width: 760px; }
+h1 { font-size: 1.45rem; margin-bottom: 8px; }
+h2 { font-size: 1.05rem; margin: 18px 0 8px; }
+.card { padding: 14px; margin-top: 12px; }
+.card + .card { margin-top: 12px; }
+
+.tel-testata { position: sticky; top: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: calc(8px + env(safe-area-inset-top)) 14px 8px; background: var(--testata); color: var(--testata-t); border-bottom: 1px solid var(--bordo); }
+.tel-titolo { display: flex; align-items: center; gap: 10px; font-size: .95rem; }
+.tel-titolo img { width: 30px; height: 30px; border-radius: 7px; }
+.tel-aggiornato { font-size: .72rem; opacity: .8; }
+
+.tel-nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 20; display: grid; grid-template-columns: repeat(6, 1fr);
+  background: var(--card); border-top: 1px solid var(--bordo); padding-bottom: env(safe-area-inset-bottom); }
+.tel-nav a { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 8px 0 7px; font-size: .68rem;
+  color: var(--muto); text-decoration: none; }
+.tel-nav svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.tel-nav a.attivo { color: var(--accento); font-weight: 700; }
+
+.anni-tel { display: flex; gap: 6px; overflow-x: auto; padding: 4px 0 8px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.anni-tel::-webkit-scrollbar { display: none; }
+.anni-tel .chip { flex: none; padding: 7px 13px; }
+
+.tel-accesso { max-width: 420px; margin: 4vh auto 0; text-align: center; }
+.tel-accesso img { border-radius: 16px; }
+.tel-accesso .card { text-align: left; }
+.tel-accesso input[type=file] { padding: 8px 0; border: 0; background: none; }
+
+.voce-altro { display: flex; flex-direction: column; gap: 2px; text-decoration: none; color: var(--testo); }
+
+.eroe-v { font-size: 2rem; }
+.kpis { grid-template-columns: 1fr 1fr; gap: 10px; }
+.kpis .card { margin-top: 0; }
+.kpi-v { font-size: 1.1rem; }
+.kpi-r { flex-direction: column; align-items: flex-start; }
+.kpi-r svg { width: 100%; }
+.griglia-cumulati { grid-template-columns: 1fr 1fr; gap: 8px; }
+.griglia-cumulati .cumulato svg { width: 100%; }
+.griglia-2, .griglia-2.uguale, .griglia-anno { grid-template-columns: 1fr; }
+.indice-v { font-size: 1.3rem; }
+.tabella-compatta td, .tabella-compatta th { padding: 6px 6px; font-size: .82rem; }
+.campi { grid-template-columns: 1fr !important; }
+.tabella-scenari input { max-width: 70px !important; }
+.btn-stampa-sezione, .aiuto-q { display: none; }
+.sintesi li { font-size: .92rem; }
+input, select, button { font-size: 16px; } /* niente zoom automatico su iPhone */
+.griglia-2 > *, .griglia-anno > * { min-width: 0; }
+th { white-space: normal; }
+.risultato-sim { overflow-x: auto; }
