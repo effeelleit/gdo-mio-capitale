@@ -295,3 +295,6 @@ select.chip.menu-anni { width: auto; padding: 5px 10px; font-size: .85rem; color
 .passi li { margin: 6px 0; line-height: 1.5; }
 .errore-testo { color: var(--critico); font-weight: 600; }
 .griglia-2 + .card, .griglia-2 + .griglia-2 { margin-top: 14px; }
+.scegli-bilancio { display: flex; gap: 8px; align-items: center; margin: 0; }
+.scegli-bilancio label { margin: 0; white-space: nowrap; }
+.scegli-bilancio select { width: auto; min-width: 170px; padding: 7px 10px; font-weight: 600; }
