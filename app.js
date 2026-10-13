@@ -6,7 +6,7 @@
 (function () {
   'use strict';
   var K_DATI = 'gdo:dati', K_PREF = 'gdo:pref';
-  var VERSIONE_APP = '1.0';
+  var VERSIONE_APP = '13/10/2026';
   var dati = null;            // dati decifrati (solo in memoria)
   var ultimoUso = Date.now();
   var main = document.getElementById('contenuto');
@@ -205,7 +205,7 @@
       '<input id="file2" type="file"><label for="pw2" style="margin-top:10px">Password del nuovo file</label><input id="pw2" type="password">' +
       '<div class="azioni"><button type="button" id="carica2">Carica</button></div><div id="errore2" class="errore-testo piccolo" role="alert"></div></div>' +
       '<div class="card"><div class="card-t">Questo telefono</div>' +
-      '<p class="piccolo">Dati esportati dal Mac il ' + new Date(dati.creato_il).toLocaleString('it-IT') + '. App versione ' + VERSIONE_APP + '.</p>' +
+      '<p class="piccolo">Dati esportati dal Mac il ' + new Date(dati.creato_il).toLocaleString('it-IT') + '.</p><p class="piccolo"><b>Versione dell\'app: ' + VERSIONE_APP + '</b> (si aggiorna da sola quando la apri con internet).</p>' +
       '<button type="button" class="secondario" id="cancella2">Cancella i dati da questo telefono</button></div>';
   }
   function collegaImpostazioni() {
