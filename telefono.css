@@ -50,3 +50,24 @@ input, select, button { font-size: 16px; } /* niente zoom automatico su iPhone *
 .griglia-2 > *, .griglia-anno > * { min-width: 0; }
 th { white-space: normal; }
 .risultato-sim { overflow-x: auto; }
+
+/* Tabelle che si adattano allo schermo (vedi adattaTabelle in app.js) */
+table.compatta th, table.compatta td { font-size: .74rem; padding: 5px 4px; }
+table.compatta td.num, table.compatta th.num { white-space: nowrap; }
+table.impilata thead { display: none; }
+table.impilata, table.impilata tbody, table.impilata tr { display: block; width: 100%; }
+table.impilata tr { padding: 8px 2px; border-bottom: 1px solid var(--bordo); }
+table.impilata td { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 3px 0;
+  border: 0; font-size: .86rem; text-align: right; }
+table.impilata td:first-child { font-weight: 700; font-size: .95rem; text-align: left; }
+table.impilata td::before { content: attr(data-etichetta); color: var(--muto); font-weight: 400; text-align: left; flex: 0 1 auto; }
+table.impilata td:first-child::before { content: none; }
+table.impilata td:empty { display: none; }
+table.impilata td input { max-width: 45% !important; text-align: right; }
+.tabella-wrap { overflow-x: visible; }
+/* Telefoni molto stretti: niente campi piu' larghi dello schermo */
+input, select, textarea { max-width: 100%; box-sizing: border-box; }
+@media (max-width: 340px) { main { padding: 12px 10px 20px; } .tel-nav a { font-size: .6rem; } }
+table.impilata td { white-space: nowrap; }
+table.impilata td::before { white-space: normal; flex: 1 1 auto; min-width: 0; }
+table.impilata td:first-child { white-space: normal; }

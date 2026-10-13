@@ -119,6 +119,31 @@
     var pre = dati.predefinite || {};
     return pre['salute/' + sid] ? 'salute/' + sid + '/' + pre['salute/' + sid] : 'salute/' + sid;
   }
+
+  // Tabelle: si adattano da sole alla larghezza del telefono (qualunque modello, anche girato).
+  // 1) se non ci stanno, testo piu' piccolo; 2) se ancora non ci stanno, ogni riga diventa una scheda.
+  function adattaTabelle() {
+    main.querySelectorAll('table').forEach(function (t) {
+      t.classList.remove('compatta', 'impilata');
+      var box = t.parentElement;
+      if (t.scrollWidth <= box.clientWidth + 1) return;
+      t.classList.add('compatta');
+      if (t.scrollWidth <= box.clientWidth + 1) return;
+      var tit = Array.prototype.map.call(t.querySelectorAll('thead th'), function (th) { return th.textContent.trim(); });
+      t.querySelectorAll('tbody tr').forEach(function (tr) {
+        Array.prototype.forEach.call(tr.children, function (td, i) { if (tit[i]) td.setAttribute('data-etichetta', tit[i]); });
+      });
+      t.classList.add('impilata');
+    });
+  }
+  var timerAdatta;
+  function adattaPiuTardi() {
+    clearTimeout(timerAdatta);
+    timerAdatta = setTimeout(function () { if (dati) adattaTabelle(); }, 150);
+  }
+  window.addEventListener('resize', adattaPiuTardi);
+  // anche le tabelle create dopo (es. risultati delle simulazioni)
+  new MutationObserver(adattaPiuTardi).observe(main, { childList: true, subtree: true });
   function vai() {
     if (!dati) return;
     var r = rotta(), html, ancora = null;
@@ -128,6 +153,7 @@
     else if (r === 'vuoto') html = '<h1>Nessun dato</h1><div class="card"><p>Questa sezione non ha ancora dati: inseriscili sul Mac e riesporta.</p></div>';
     else html = dati.pagine[r] || '<h1>Pagina non trovata</h1><div class="card"><p>Torna a <a href="#anno">Il mio anno</a>.</p></div>';
     main.innerHTML = html;
+    setTimeout(adattaTabelle, 0);
     eseguiScript(main);
     if (r === 'impostazioni') collegaImpostazioni();
     var tab = r.split('/')[0];

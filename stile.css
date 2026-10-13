@@ -190,6 +190,7 @@ tr.sottolineata td { background: var(--accento-m); }
   #area-stampa h1 { margin-bottom: 2px; }
   #area-stampa .card { margin-top: 12px; }
   .testata, .azioni, form, .link-btn, .solo-schermo { display: none !important; }
+  .solo-stampa { display: inline !important; }
   html, body { background: #fff !important; color: #000 !important; }
   main { padding: 0; max-width: none; }
   .card { break-inside: avoid; border-color: #bbb; box-shadow: none; }
@@ -298,3 +299,7 @@ select.chip.menu-anni { width: auto; padding: 5px 10px; font-size: .85rem; color
 .scegli-bilancio { display: flex; gap: 8px; align-items: center; margin: 0; }
 .scegli-bilancio label { margin: 0; white-space: nowrap; }
 .scegli-bilancio select { width: auto; min-width: 170px; padding: 7px 10px; font-weight: 600; }
+
+.solo-stampa { display: none; }
+.tabella-registro td { vertical-align: top; }
+@media print { .card:has(.tabella-registro) { break-inside: auto; } }

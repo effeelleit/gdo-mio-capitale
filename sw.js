@@ -1,5 +1,5 @@
 /* GDO & Mio Capitale - funzionamento senza internet (generato da costruisci_telefono.py). */
-const CACHE = 'gdo-mio-capitale-e167288a14';
+const CACHE = 'gdo-mio-capitale-c1571f8558';
 const FILE = ['./', './index.html', './app.js', './telefono.css', './manifest.webmanifest', './stile.css', './cifratura.js', './motore_simulazioni.js', './icone/icona-192.png', './icone/icona-512.png', './icone/icona-maskable-512.png', './icone/apple-touch-icon.png'];
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILE)).then(() => self.skipWaiting()));
