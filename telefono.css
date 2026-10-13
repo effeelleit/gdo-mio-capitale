@@ -46,7 +46,9 @@ h2 { font-size: 1.05rem; margin: 18px 0 8px; }
 .tabella-scenari input { max-width: 70px !important; }
 .btn-stampa-sezione, .aiuto-q { display: none; }
 .sintesi li { font-size: .92rem; }
-input, select, button { font-size: 16px; } /* niente zoom automatico su iPhone */
+/* Niente zoom automatico su iPhone: Safari ingrandisce la pagina quando si tocca un campo con testo sotto i 16px.
+   Serve !important perche' le regole di stile.css (es. input[type=password]) sono piu' specifiche. */
+input, select, button, textarea { font-size: 16px !important; }
 .griglia-2 > *, .griglia-anno > * { min-width: 0; }
 th { white-space: normal; }
 .risultato-sim { overflow-x: auto; }
