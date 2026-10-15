@@ -328,3 +328,4 @@ select.chip.menu-anni { width: auto; padding: 5px 10px; font-size: .85rem; color
 .riga-figlio td { background: var(--accento-m); }
 .legenda-righello { display: flex; gap: 20px; flex-wrap: wrap; font-size: .8rem; color: var(--testo2); margin-top: 10px; align-items: center; }
 .legenda-righello span { display: inline-flex; gap: 6px; align-items: center; }
+.riga-figlio-gestione td { background: var(--accento-m); } .ramo { color: var(--accento); font-size: 1.1rem; text-align: right; }
