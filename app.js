@@ -6,7 +6,7 @@
 (function () {
   'use strict';
   var K_DATI = 'gdo:dati', K_PREF = 'gdo:pref';
-  var VERSIONE_APP = '13/10/2026 · 46b0';
+  var VERSIONE_APP = '15/10/2026 · 35b3';
   var dati = null;            // dati decifrati (solo in memoria)
   var ultimoUso = Date.now();
   var main = document.getElementById('contenuto');
@@ -157,7 +157,7 @@
     eseguiScript(main);
     if (r === 'impostazioni') collegaImpostazioni();
     var tab = r.split('/')[0];
-    if (tab === 'pagelle') tab = 'negozi';
+    if (tab === 'pagelle' || tab.indexOf('pv-') === 0) tab = 'negozi';
     if (['scadenze', 'avvisi', 'glossario', 'impostazioni'].indexOf(tab) >= 0) tab = 'altro';
     nav.querySelectorAll('a').forEach(function (a) { a.classList.toggle('attivo', a.getAttribute('data-tab') === tab); });
     // l'anno scelto visibile nella fila degli anni

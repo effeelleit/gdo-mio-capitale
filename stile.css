@@ -53,7 +53,7 @@ a { color: var(--accento); }
 .icona-btn svg { width: 18px; height: 18px; }
 [data-tema="chiaro"] .icona-sole, [data-tema="scuro"] .icona-luna { display: none; }
 
-main { max-width: 1280px; margin: 0 auto; padding: 22px; }
+main { max-width: 1600px; margin: 0 auto; padding: 22px; }   /* largo come le altre app (regola: niente colonna stretta) */
 h1 { font-size: 1.75rem; letter-spacing: -.3px; margin: 0; }
 h2 { font-size: 1.15rem; margin: 0 0 12px; }
 h3 { font-size: 1rem; margin: 18px 0 8px; }
@@ -173,7 +173,7 @@ tr.sottolineata td { background: var(--accento-m); }
 .sezione-futura { border: 1px dashed var(--bordo); border-radius: 10px; padding: 10px 12px; color: var(--muto); font-size: .88rem; }
 .sezione-futura b { color: var(--testo2); display: block; }
 
-.blocco-pagina { max-width: 900px; }
+.blocco-pagina { max-width: none; }
 .accesso { max-width: 380px; margin: 10vh auto; }
 
 .casella-stampa { display: none; }
@@ -303,3 +303,28 @@ select.chip.menu-anni { width: auto; padding: 5px 10px; font-size: .85rem; color
 .solo-stampa { display: none; }
 .tabella-registro td { vertical-align: top; }
 @media print { .card:has(.tabella-registro) { break-inside: auto; } }
+
+/* Impostazioni: "Dati e sicurezza" su una riga sola (va a capo solo su schermi stretti) */
+.azioni-riga { flex-wrap: nowrap; gap: 8px; }
+.azioni-riga .btn { flex: 1 1 0; text-align: center; white-space: nowrap; }
+@media (max-width: 1200px) { .azioni-riga { flex-wrap: wrap; } .azioni-riga .btn { flex: 0 1 auto; } }
+/* Il mio anno: i 4 riquadri in alto, con l'anno evidenziato */
+.kpis-in-alto { margin: 0 0 14px; }
+.etichetta-anno { display: inline-block; background: var(--accento-m); color: var(--accento); border-radius: 6px; padding: 1px 7px; margin-left: 4px; letter-spacing: 0; }
+/* Salute società: stacco tra i conteggi e i semafori per area */
+.riepilogo-salute .domande-mini { margin-top: 14px; padding-top: 14px; border-top: 1px solid var(--bordo); align-items: center; }
+.testa-griglia { display: grid; gap: 8px; text-align: left; }   /* intestazioni allineate alle righe fatte a griglia */
+/* Conti dei negozi (prospetti aziendali) */
+.cella-debole { background: var(--arancio-m, #fdebd9); font-weight: 700; }
+.righello { display: block; max-width: 100%; }
+.tabella-budget td { vertical-align: middle; }
+.tabella-reparti td .piccolo { margin-top: 1px; }
+.negativo, .negativo b { color: var(--critico) !important; }
+.negativo-budget { color: var(--arancio) !important; }
+.cella-sospetta { outline: 2px solid var(--attenzione); outline-offset: -3px; border-radius: 4px; }
+.fonte-tabella { font-size: .76rem; color: var(--muto); margin-top: 8px; }
+.apri-rep { border: 0; background: none; color: var(--accento); font-size: .9rem; padding: 0 6px 0 0; cursor: pointer; }
+.rep-figlio { padding-left: 26px !important; color: var(--testo2); }
+.riga-figlio td { background: var(--accento-m); }
+.legenda-righello { display: flex; gap: 20px; flex-wrap: wrap; font-size: .8rem; color: var(--testo2); margin-top: 10px; align-items: center; }
+.legenda-righello span { display: inline-flex; gap: 6px; align-items: center; }
