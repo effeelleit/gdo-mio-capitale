@@ -372,3 +372,6 @@ h2 .btn-guida { font-size: .72rem; }
 .domanda-tel .verifica-indici { margin: 4px 0; }
 .riga-parere { display: block; text-decoration: none; color: var(--testo); }
 .riga-parere:hover { border-color: var(--accento); }
+.riquadro-rischio { border-left: 4px solid var(--arancio); }
+.da-parte summary { cursor: pointer; }
+.da-parte[open] summary { margin-bottom: 8px; }
