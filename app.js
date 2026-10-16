@@ -6,7 +6,7 @@
 (function () {
   'use strict';
   var K_DATI = 'gdo:dati', K_PREF = 'gdo:pref';
-  var VERSIONE_APP = '16/10/2026 · a0ab';
+  var VERSIONE_APP = '16/10/2026 · f449';
   var dati = null;            // dati decifrati (solo in memoria)
   var ultimoUso = Date.now();
   var main = document.getElementById('contenuto');
@@ -206,6 +206,7 @@
       '<div class="azioni"><button type="button" id="carica2">Carica</button></div><div id="errore2" class="errore-testo piccolo" role="alert"></div></div>' +
       '<div class="card"><div class="card-t">Questo telefono</div>' +
       '<p class="piccolo">Dati esportati dal Mac il ' + new Date(dati.creato_il).toLocaleString('it-IT') + '.</p><p class="piccolo"><b>Versione dell\'app: ' + VERSIONE_APP + '</b> (si aggiorna da sola quando la apri con internet).</p>' +
+      '<button type="button" id="aggiorna" class="secondario">Cerca aggiornamenti dell\'app</button><p class="piccolo muto" id="stato-agg" style="margin-top:6px"></p>' +
       '<button type="button" class="secondario" id="cancella2">Cancella i dati da questo telefono</button></div>';
   }
   function collegaImpostazioni() {
@@ -217,6 +218,7 @@
       });
     });
     document.getElementById('cancella2').addEventListener('click', cancellaTutto);
+    document.getElementById('aggiorna').addEventListener('click', cercaAggiornamento);
     document.getElementById('carica2').addEventListener('click', function () {
       var f = document.getElementById('file2').files[0], pw = document.getElementById('pw2').value, err = document.getElementById('errore2');
       err.textContent = '';
@@ -227,6 +229,38 @@
           location.hash = '#anno'; entra(d);
         });
       }).catch(function (e) { err.textContent = messaggioErrore(e); });
+    });
+  }
+
+  // ------------------------------------------------------------ aggiornamento dell'app (il contenitore, non i dati)
+  // Scarica sw.js senza cache e confronta la versione con quella in uso. Se e' cambiata svuota la cache dell'app
+  // (NON i dati: quelli stanno nella memoria del browser, a parte) e ricarica la pagina con la versione nuova.
+  function cercaAggiornamento() {
+    var stato = document.getElementById('stato-agg');
+    stato.textContent = 'Controllo in corso…';
+    fetch('sw.js?c=' + Date.now(), { cache: 'no-store' }).then(function (r) {
+      if (!r.ok) throw new Error('rete');
+      return r.text();
+    }).then(function (testo) {
+      var m = testo.match(/gdo-mio-capitale-([0-9a-f]+)/);
+      var nuova = m ? m[1] : '';
+      return caches.keys().then(function (chiavi) {
+        // la versione che sta girando e' scritta in VERSIONE_APP («data · prime 4 cifre del codice»)
+        if (nuova && nuova.indexOf(VERSIONE_APP.split('· ')[1] || '#') === 0) {
+          stato.textContent = 'L\'app è già aggiornata (' + VERSIONE_APP + ').';
+          return;
+        }
+        stato.textContent = 'Trovata una versione nuova: aggiornamento in corso…';
+        var togli = navigator.serviceWorker ? navigator.serviceWorker.getRegistrations().then(function (regs) {
+          return Promise.all(regs.map(function (g) { return g.unregister(); }));
+        }) : Promise.resolve();
+        return togli.then(function () {
+          return Promise.all(chiavi.filter(function (k) { return k.indexOf('gdo-mio-capitale-') === 0; })
+            .map(function (k) { return caches.delete(k); }));
+        }).then(function () { location.reload(); });
+      });
+    }).catch(function () {
+      stato.textContent = 'Non riesco a collegarmi a internet: riprova quando sei connesso.';
     });
   }
 
@@ -244,7 +278,8 @@
 
   // ------------------------------------------------------------ avvio
   if ('serviceWorker' in navigator && location.protocol === 'https:') {
-    navigator.serviceWorker.register('sw.js').catch(function () {});
+    // updateViaCache 'none': il browser ricontrolla sw.js ogni volta, senza usare la sua cache
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).then(function (reg) { reg.update(); }).catch(function () {});
   }
   applicaPref();
   if (salvato()) sblocco(); else benvenuto();
