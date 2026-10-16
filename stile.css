@@ -335,3 +335,17 @@ select.chip.menu-anni { width: auto; padding: 5px 10px; font-size: .85rem; color
 .riga-spazio td { height: 14px; padding: 0 !important; border: 0 !important; background: none !important; }
 .msg.perdita { border-color: var(--arancio); background: var(--arancio-m); }
 .msg.perdita b, .msg.perdita .forte { color: var(--arancio); }
+/* Guida in linea */
+.btn-guida { display: inline-flex; align-items: center; gap: 5px; margin-left: 10px; padding: 2px 10px 2px 3px; border: 1px solid var(--bordo);
+  border-radius: 999px; font-size: .78rem; font-weight: 600; color: var(--accento); text-decoration: none; vertical-align: middle; background: var(--card); }
+.btn-guida span { display: inline-grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; background: var(--accento); color: var(--su-accento); font-size: .8rem; font-weight: 800; }
+.btn-guida:hover { border-color: var(--accento); }
+h2 .btn-guida { font-size: .72rem; }
+.sezione-guida { margin-top: 14px; scroll-margin-top: 80px; transition: box-shadow .4s; }
+.sezione-guida h2 { margin-top: 0; } .sezione-guida h3 { font-size: .95rem; margin: 12px 0 4px; }
+.sezione-guida li { margin: 4px 0; line-height: 1.5; }
+.guida-esempio { background: var(--accento-m); border-left: 4px solid var(--accento); border-radius: 0 8px 8px 0; padding: 10px 14px; margin-top: 10px; line-height: 1.5; }
+.guida-dubbi dt { font-weight: 700; margin-top: 8px; } .guida-dubbi dd { margin: 2px 0 0 0; color: var(--testo2); }
+.guida-attiva { box-shadow: 0 0 0 3px var(--accento); }
+.indice-guida a { white-space: nowrap; }
+@media print { .btn-guida { display: none !important; } }

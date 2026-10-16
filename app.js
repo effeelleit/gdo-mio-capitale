@@ -6,7 +6,7 @@
 (function () {
   'use strict';
   var K_DATI = 'gdo:dati', K_PREF = 'gdo:pref';
-  var VERSIONE_APP = '16/10/2026 · 1410';
+  var VERSIONE_APP = '16/10/2026 · 5371';
   var dati = null;            // dati decifrati (solo in memoria)
   var ultimoUso = Date.now();
   var main = document.getElementById('contenuto');
@@ -153,6 +153,7 @@
     if (!dati) return;
     var r = rotta(), html, ancora = null;
     if (r.indexOf('glossario/') === 0) { ancora = 'g-' + r.split('/')[1]; r = 'glossario'; }
+    if (r.indexOf('guida/') === 0) { ancora = 'g-' + r.split('/')[1]; r = 'guida'; }
     if (r === 'altro') html = paginaAltro();
     else if (r === 'impostazioni') html = paginaImpostazioni();
     else if (r === 'vuoto') html = '<h1>Nessun dato</h1><div class="card"><p>Questa sezione non ha ancora dati: inseriscili sul Mac e riesporta.</p></div>';
@@ -163,7 +164,7 @@
     if (r === 'impostazioni') collegaImpostazioni();
     var tab = r.split('/')[0];
     if (tab === 'pagelle' || tab.indexOf('pv-') === 0) tab = 'negozi';
-    if (['scadenze', 'avvisi', 'glossario', 'impostazioni'].indexOf(tab) >= 0) tab = 'altro';
+    if (['scadenze', 'avvisi', 'glossario', 'impostazioni', 'guida'].indexOf(tab) >= 0) tab = 'altro';
     nav.querySelectorAll('a').forEach(function (a) { a.classList.toggle('attivo', a.getAttribute('data-tab') === tab); });
     // l'anno scelto visibile nella fila degli anni
     main.querySelectorAll('.anni-tel .chip.sel').forEach(function (c) { c.scrollIntoView({ block: 'nearest', inline: 'center' }); });
@@ -185,6 +186,7 @@
     var voci = [['#scadenze', 'Scadenze', 'INPS, F24, bilanci e possibili dividendi'],
                 ['#avvisi', 'Tutti gli avvisi', 'Dati da completare e segnali'],
                 ['#pagelle', 'Pagelle dei negozi', 'Il confronto su tutti gli anni'],
+                ['#guida', 'Guida', 'Come si legge ogni pagina, con esempi'],
                 ['#glossario', 'Glossario', 'I termini spiegati in parole semplici'],
                 ['#impostazioni', 'Impostazioni', 'Colore, tema, blocco, nuovo file dei dati']];
     return '<h1>Altro</h1>' + voci.map(function (v) {
