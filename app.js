@@ -6,7 +6,7 @@
 (function () {
   'use strict';
   var K_DATI = 'gdo:dati', K_PREF = 'gdo:pref';
-  var VERSIONE_APP = '16/10/2026 · ddb1';
+  var VERSIONE_APP = '16/10/2026 · 6f05';
   var dati = null;            // dati decifrati (solo in memoria)
   var ultimoUso = Date.now();
   var main = document.getElementById('contenuto');
@@ -157,13 +157,20 @@
     else if (r === 'impostazioni') html = paginaImpostazioni();
     else if (r === 'vuoto') html = '<h1>Nessun dato</h1><div class="card"><p>Questa sezione non ha ancora dati: inseriscili sul Mac e riesporta.</p></div>';
     else html = dati.pagine[r] || '<h1>Pagina non trovata</h1><div class="card"><p>Torna a <a href="#anno">Il mio anno</a>.</p></div>';
+    // «Ci sono N novità»: una riga discreta in cima, finché non si apre la pagina Novità di questo file
+    var K_VISTE = 'gdo-novita-viste';
+    var viste = null;
+    try { if (r === 'novita') localStorage.setItem(K_VISTE, dati.creato_il); viste = localStorage.getItem(K_VISTE); } catch (e) {}
+    if (dati.novita && r !== 'novita' && viste !== dati.creato_il && dati.pagine.novita) {
+      html = '<a class="riga-novita" href="#novita">Ci sono ' + dati.novita + ' novità in questo file →</a>' + html;
+    }
     main.innerHTML = html;
     setTimeout(adattaTabelle, 0);
     eseguiScript(main);
     if (r === 'impostazioni') collegaImpostazioni();
     var tab = r.split('/')[0];
     if (tab === 'pagelle' || tab.indexOf('pv-') === 0) tab = 'negozi';
-    if (['scadenze', 'avvisi', 'glossario', 'impostazioni', 'guida'].indexOf(tab) >= 0) tab = 'altro';
+    if (['scadenze', 'avvisi', 'glossario', 'impostazioni', 'guida', 'verifica', 'novita'].indexOf(tab) >= 0) tab = 'altro';
     nav.querySelectorAll('a').forEach(function (a) { a.classList.toggle('attivo', a.getAttribute('data-tab') === tab); });
     // l'anno scelto visibile nella fila degli anni
     main.querySelectorAll('.anni-tel .chip.sel').forEach(function (c) { c.scrollIntoView({ block: 'nearest', inline: 'center' }); });
@@ -182,7 +189,8 @@
 
   // ------------------------------------------------------------ pagine locali: Altro, Impostazioni
   function paginaAltro() {
-    var voci = [['#scadenze', 'Scadenze', 'INPS, F24, bilanci e possibili dividendi'],
+    var voci = [['#verifica', 'Verifica', 'Le conclusioni sull\'andamento delle due società'],
+                ['#scadenze', 'Scadenze', 'INPS, F24, bilanci e possibili dividendi'],
                 ['#avvisi', 'Tutti gli avvisi', 'Dati da completare e segnali'],
                 ['#pagelle', 'Pagelle dei negozi', 'Il confronto su tutti gli anni'],
                 ['#guida', 'Guida', 'Come si legge ogni pagina, con esempi'],
@@ -206,6 +214,8 @@
       radio('tema', 'automatico', 'Automatico', tema === 'automatico') + '</div></div>' +
       '<div class="card"><div class="card-t">Blocco automatico</div><p class="piccolo">Dopo quanti minuti senza uso l\'app richiede la password.</p><div class="opzioni">' +
       [1, 5, 15, 0].map(function (m) { return radio('blocco', m, m ? m + ' min' : 'Mai', bl === m); }).join('') + '</div></div>' +
+      '<a class="card voce-altro" href="#novita"><b>Novità' + (dati.novita ? ' (' + dati.novita + ')' : '') + '</b>' +
+      '<span class="muto piccolo">Cosa è cambiato in questo file e nell\'app</span></a>' +
       '<div class="card"><div class="card-t">Carica un nuovo file dei dati</div>' +
       '<p class="piccolo">Dopo aver esportato di nuovo dal Mac. Sostituisce i dati attuali.</p>' +
       '<input id="file2" type="file"><label for="pw2" style="margin-top:10px">Password del nuovo file</label><input id="pw2" type="password">' +

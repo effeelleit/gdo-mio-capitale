@@ -352,3 +352,21 @@ h2 .btn-guida { font-size: .72rem; }
 .elenco-guida { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; }
 .elenco-guida a { padding: 10px 12px; border: 1px solid var(--bordo); border-radius: 8px; text-decoration: none; color: var(--accento); font-weight: 600; }
 .elenco-guida a:hover { border-color: var(--accento); }
+
+/* Verifica e Novità */
+.tabella-verifica { width: 100%; border-collapse: collapse; }
+.tabella-verifica th, .tabella-verifica td { text-align: left; vertical-align: top; padding: 10px; border-bottom: 1px solid var(--bordo); }
+.tabella-verifica td.voce { white-space: nowrap; }
+.verifica-indici { display: flex; align-items: center; gap: 6px; font-size: .85rem; margin-bottom: 6px; }
+.verifica-giudizio { display: flex; align-items: flex-start; gap: 6px; }
+.verifica-giudizio .pallino, .verifica-indici .pallino { width: 16px; height: 16px; font-size: 10px; margin-top: 2px; }
+.elenco-verifica { margin: 0; padding-left: 20px; }
+.elenco-verifica li { margin: 5px 0; }
+.elenco-novita { list-style: none; margin: 0; padding: 0; }
+.elenco-novita li { padding: 8px 0; border-bottom: 1px solid var(--bordo); }
+.elenco-novita li:last-child { border-bottom: 0; }
+.etichetta-nuova { display: inline-block; font-size: .7rem; font-weight: 700; padding: 1px 7px; border-radius: 999px; background: var(--accento); color: var(--su-accento); }
+.verifica-giudizio, .verifica-giudizio > span { min-width: 0; overflow-wrap: anywhere; }
+.domanda-tel { padding: 8px 0; border-bottom: 1px solid var(--bordo); }
+.domanda-tel:last-child { border-bottom: 0; }
+.domanda-tel .verifica-indici { margin: 4px 0; }

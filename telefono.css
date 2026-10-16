@@ -75,3 +75,4 @@ table.impilata td::before { white-space: normal; flex: 1 1 auto; min-width: 0; }
 table.impilata td:first-child { white-space: normal; }
 .versione-accesso { text-align: center; font-size: .72rem; color: var(--muto); margin: 28px 0 10px; }
 .tel-nav[hidden], #blocca[hidden], [hidden] { display: none !important; }
+.riga-novita { display: block; margin: 0 0 12px; padding: 8px 12px; border-radius: 10px; background: var(--accento-m); color: var(--testo); font-size: .88rem; text-decoration: none; border: 1px solid var(--bordo); }
