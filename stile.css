@@ -323,9 +323,15 @@ select.chip.menu-anni { width: auto; padding: 5px 10px; font-size: .85rem; color
 .negativo-budget { color: var(--arancio) !important; }
 .cella-sospetta { outline: 2px solid var(--attenzione); outline-offset: -3px; border-radius: 4px; }
 .fonte-tabella { font-size: .76rem; color: var(--muto); margin-top: 8px; }
-.apri-rep { border: 0; background: none; color: var(--accento); font-size: .9rem; padding: 0 6px 0 0; cursor: pointer; }
+.apri-rep { border: 0; background: none; color: var(--accento); font-size: 1.35rem; line-height: 1; padding: 0 0 0 8px; cursor: pointer; vertical-align: -2px; }
+.apri-rep:hover { color: var(--testo); }
 .rep-figlio { padding-left: 26px !important; color: var(--testo2); }
 .riga-figlio td { background: var(--accento-m); }
 .legenda-righello { display: flex; gap: 20px; flex-wrap: wrap; font-size: .8rem; color: var(--testo2); margin-top: 10px; align-items: center; }
 .legenda-righello span { display: inline-flex; gap: 6px; align-items: center; }
 .riga-figlio-gestione td { background: var(--accento-m); } .ramo { color: var(--accento); font-size: 1.1rem; text-align: right; }
+.riga-migliore td { background: var(--accento-m); }
+.riga-peggiore td { background: var(--arancio-m); }
+.riga-spazio td { height: 14px; padding: 0 !important; border: 0 !important; background: none !important; }
+.msg.perdita { border-color: var(--arancio); background: var(--arancio-m); }
+.msg.perdita b, .msg.perdita .forte { color: var(--arancio); }

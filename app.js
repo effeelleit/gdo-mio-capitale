@@ -6,7 +6,7 @@
 (function () {
   'use strict';
   var K_DATI = 'gdo:dati', K_PREF = 'gdo:pref';
-  var VERSIONE_APP = '15/10/2026 · 44b0';
+  var VERSIONE_APP = '16/10/2026 · a0ab';
   var dati = null;            // dati decifrati (solo in memoria)
   var ultimoUso = Date.now();
   var main = document.getElementById('contenuto');
