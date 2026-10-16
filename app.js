@@ -6,7 +6,7 @@
 (function () {
   'use strict';
   var K_DATI = 'gdo:dati', K_PREF = 'gdo:pref';
-  var VERSIONE_APP = '16/10/2026 · 5371';
+  var VERSIONE_APP = '16/10/2026 · ddb1';
   var dati = null;            // dati decifrati (solo in memoria)
   var ultimoUso = Date.now();
   var main = document.getElementById('contenuto');
@@ -153,7 +153,6 @@
     if (!dati) return;
     var r = rotta(), html, ancora = null;
     if (r.indexOf('glossario/') === 0) { ancora = 'g-' + r.split('/')[1]; r = 'glossario'; }
-    if (r.indexOf('guida/') === 0) { ancora = 'g-' + r.split('/')[1]; r = 'guida'; }
     if (r === 'altro') html = paginaAltro();
     else if (r === 'impostazioni') html = paginaImpostazioni();
     else if (r === 'vuoto') html = '<h1>Nessun dato</h1><div class="card"><p>Questa sezione non ha ancora dati: inseriscili sul Mac e riesporta.</p></div>';

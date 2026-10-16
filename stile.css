@@ -349,3 +349,6 @@ h2 .btn-guida { font-size: .72rem; }
 .guida-attiva { box-shadow: 0 0 0 3px var(--accento); }
 .indice-guida a { white-space: nowrap; }
 @media print { .btn-guida { display: none !important; } }
+.elenco-guida { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 8px; }
+.elenco-guida a { padding: 10px 12px; border: 1px solid var(--bordo); border-radius: 8px; text-decoration: none; color: var(--accento); font-weight: 600; }
+.elenco-guida a:hover { border-color: var(--accento); }
