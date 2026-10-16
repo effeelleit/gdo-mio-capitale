@@ -73,3 +73,5 @@ input, select, textarea { max-width: 100%; box-sizing: border-box; }
 table.impilata td { white-space: nowrap; }
 table.impilata td::before { white-space: normal; flex: 1 1 auto; min-width: 0; }
 table.impilata td:first-child { white-space: normal; }
+.versione-accesso { text-align: center; font-size: .72rem; color: var(--muto); margin: 28px 0 10px; }
+.tel-nav[hidden], #blocca[hidden], [hidden] { display: none !important; }

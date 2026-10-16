@@ -6,7 +6,7 @@
 (function () {
   'use strict';
   var K_DATI = 'gdo:dati', K_PREF = 'gdo:pref';
-  var VERSIONE_APP = '16/10/2026 · f449';
+  var VERSIONE_APP = '16/10/2026 · 1410';
   var dati = null;            // dati decifrati (solo in memoria)
   var ultimoUso = Date.now();
   var main = document.getElementById('contenuto');
@@ -51,6 +51,11 @@
   function mostraModello(id) {
     main.innerHTML = '';
     main.appendChild(document.getElementById(id).content.cloneNode(true));
+    // versione dell'app in basso, discreta: si vede subito se l'aggiornamento e' arrivato
+    var v = document.createElement('p');
+    v.className = 'versione-accesso';
+    v.textContent = 'Versione dell\'app: ' + VERSIONE_APP;
+    main.appendChild(v);
     nav.hidden = true; btnBlocca.hidden = true;
     document.getElementById('aggiornato').textContent = '';
   }
