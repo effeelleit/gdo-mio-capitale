@@ -6,7 +6,7 @@
 (function () {
   'use strict';
   var K_DATI = 'gdo:dati', K_PREF = 'gdo:pref';
-  var VERSIONE_APP = '16/10/2026 · 6f05';
+  var VERSIONE_APP = '16/10/2026 · bf00';
   var dati = null;            // dati decifrati (solo in memoria)
   var ultimoUso = Date.now();
   var main = document.getElementById('contenuto');
@@ -189,7 +189,7 @@
 
   // ------------------------------------------------------------ pagine locali: Altro, Impostazioni
   function paginaAltro() {
-    var voci = [['#verifica', 'Verifica', 'Le conclusioni sull\'andamento delle due società'],
+    var voci = [['#verifica', 'Il parere', 'Il punto sulle società: considerazioni sull\'andamento'],
                 ['#scadenze', 'Scadenze', 'INPS, F24, bilanci e possibili dividendi'],
                 ['#avvisi', 'Tutti gli avvisi', 'Dati da completare e segnali'],
                 ['#pagelle', 'Pagelle dei negozi', 'Il confronto su tutti gli anni'],

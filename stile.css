@@ -353,7 +353,7 @@ h2 .btn-guida { font-size: .72rem; }
 .elenco-guida a { padding: 10px 12px; border: 1px solid var(--bordo); border-radius: 8px; text-decoration: none; color: var(--accento); font-weight: 600; }
 .elenco-guida a:hover { border-color: var(--accento); }
 
-/* Verifica e Novità */
+/* Il parere (verifica) e Novità */
 .tabella-verifica { width: 100%; border-collapse: collapse; }
 .tabella-verifica th, .tabella-verifica td { text-align: left; vertical-align: top; padding: 10px; border-bottom: 1px solid var(--bordo); }
 .tabella-verifica td.voce { white-space: nowrap; }
@@ -370,3 +370,5 @@ h2 .btn-guida { font-size: .72rem; }
 .domanda-tel { padding: 8px 0; border-bottom: 1px solid var(--bordo); }
 .domanda-tel:last-child { border-bottom: 0; }
 .domanda-tel .verifica-indici { margin: 4px 0; }
+.riga-parere { display: block; text-decoration: none; color: var(--testo); }
+.riga-parere:hover { border-color: var(--accento); }
